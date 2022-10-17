@@ -108,7 +108,7 @@ export const updatePlain = (order: Order, callback: Function) => {
     
     db.query(
         queryString,
-        [order.product.id, order.customer.id, order.productQuantity],
+        [order.product.id, order.customer.id, order.productQuantity, order.orderId],
         (err, res) => {
             if(err){callback(err)}
 
