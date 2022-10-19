@@ -42,7 +42,7 @@ orderRouter.put('/:id',async (req: Request, res: Response) => {
             return res.status(500).json({"errorMessage":err.message});
         }
 
-        res.status(200).send();
+        res.status(200).json({"message":"Data berhasil diubah."});
     })
 })
 
