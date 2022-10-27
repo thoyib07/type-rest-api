@@ -8,7 +8,7 @@ customerRouter.get('/',async (req: Request, res: Response) => {
         if (err) {
             return res.status(500).json({"errorMessage": err.message});
         }
-
+        // console.log('callback : '+customer);
         res.status(200).json({"data": customer});
     });
 });
@@ -19,7 +19,6 @@ customerRouter.post('/',async (req: Request, res: Response) => {
         if (err) {
             return res.status(500).json({"errorMessage": err.message});
         }
-
         res.status(200).json({"customerId": customerId});
     });
 })
@@ -30,7 +29,7 @@ customerRouter.get('/:id',async (req: Request, res: Response) => {
         if (err) {
             return res.status(500).json({"errorMessage":err.message});
         }
-
+        // console.log('callback : '+customer);
         res.status(200).json({"data":customer});
     });
 });

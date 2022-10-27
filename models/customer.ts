@@ -10,8 +10,10 @@ export const findAllPlain = (callback: Function) => {
         if (err) { callback(err) }
 
         const rows = <RowDataPacket []> res;
-        const customers = [];
+        const customers: Customer[] = [];
 
+        // console.log(rows);
+        // return false;
         rows.forEach(row => {
             const customer: Customer = {
                 id: row.id,
@@ -20,6 +22,8 @@ export const findAllPlain = (callback: Function) => {
             };
             customers.push(customer);
         });
+
+        callback(null,customers);
     })
 };
 
@@ -32,6 +36,9 @@ export const findOnePlain = (customerId: number, callback: Function) => {
         }
 
         const row = (<RowDataPacket>res)[0];
+
+        // console.log(row);
+        // return false;
         const customer: Customer = {
             id: row.id,
             name: row.name,
@@ -47,7 +54,7 @@ export const createPlain = (customer: Customer, callback: Function) => {
     const passHash = bcrypt.hash(customer.password!, 10);
     db.query(
         queryString,
-        [customer.name, customer.email, passHash],
+        [customer.name, customer.email, customer.password],
         (err, res) => {
             if (err) {
                 callback(err);
@@ -68,7 +75,7 @@ export const updatePlain = (customer: Customer, callback: Function) => {
     const passHash = bcrypt.hash(customer.password!, 10);
     db.query(
         queryString,
-        [customer.name, passHash, customer.email, customer.id],
+        [customer.name, customer.password, customer.email, customer.id],
         (err, res) => {
             if (err) {
                 callback(err);
